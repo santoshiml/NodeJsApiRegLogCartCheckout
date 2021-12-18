@@ -1,8 +1,7 @@
 'use strict';
-//var Sequelize = require('sequelize-isunique-validator')(Sequelize);
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Products', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,22 +11,7 @@ module.exports = {
       Name: {
         type: Sequelize.STRING
       },
-      Email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-              isEmail:true,
-              // isUnique: Sequelize.validateIsUnique('Email')
-        }
-    
-      },
-      Password: {
-        type: Sequelize.STRING
-      },
-      Phone: {
-        type: Sequelize.INTEGER
-      },
-      Age: {
+      Price: {
         type: Sequelize.INTEGER
       },
       createdAt: {
@@ -41,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Users');
+    await queryInterface.dropTable('Products');
   }
 };

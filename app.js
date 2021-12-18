@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var config = require('./config/config');
+var cors = require('cors');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -18,8 +20,10 @@ app.set('view engine', 'ejs');
 
 var url = "postgres://postgres:123456@localhost:5432/new_to_do";
 
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
 
 
 const sequelize = new Sequelize(url, config)
@@ -49,9 +53,16 @@ app.use('/users', usersRouter);
 app.get('/', function(req, res){
   res.send("Server connection save!")  
 })
-app.listen(3000, function(){
-  console.log('Connection done with port 3000')
+
+
+app.listen(4000, function(){
+  console.log('Connection done with port 4000')
 });
+
+
+
+
+
 
 
 module.exports = app;
