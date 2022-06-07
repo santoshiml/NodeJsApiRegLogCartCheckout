@@ -126,6 +126,7 @@ function my_profile(req, res){
 /* update profile */
 async function update_profile(req,res){
   // try{  
+    console.log(req.file)
     if((req.body.Email || req.body.Password)){
       if(!req.body.Current_Password){
         res.status(400).json({message: "Current Password filed is required"})
@@ -157,7 +158,7 @@ async function update_profile(req,res){
       }
 
       if(req.file){
-        //console.log('333',req.file) // profile_name,imagename(abc.jpg),  
+        console.log('333',req.file) // profile_name,imagename(abc.jpg),  
         const profile = await req.user.getProfile();
         profile.image = req.file.path
         await profile.save()
